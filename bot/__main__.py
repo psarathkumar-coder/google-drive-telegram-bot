@@ -1,7 +1,6 @@
 import os
 import logging
-import asyncio
-from pyrogram import Client, idle
+from pyrogram import Client
 from bot import (
     APP_ID,
     API_HASH,
@@ -34,18 +33,6 @@ if __name__ == "__main__":
         parse_mode="markdown",
         workdir=DOWNLOAD_DIRECTORY
     )
-
-    async def main():
-        LOGGER.info('Starting Bot !')
-        try:
-            await app.start()
-            LOGGER.info('Bot is successfully synced and running!')
-            await idle()
-        except Exception as e:
-            LOGGER.error(f'Error during runtime: {e}')
-        finally:
-            await app.stop()
-            LOGGER.info('Bot Stopped !')
-
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(main())
+    
+    LOGGER.info('Starting Bot !')
+    app.run()
